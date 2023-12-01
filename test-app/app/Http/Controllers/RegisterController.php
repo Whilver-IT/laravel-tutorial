@@ -65,11 +65,16 @@ class RegisterController extends Controller
 
         // ※1は$inputを使用せず以下の記述の方がLaravelっぽいかもしれない
         // 以下の方が、$inputを作成しないでよい(がもちろん時と場合による)
-        //$validator = Validator::make($request->all(), [
+        //$validator = Validator::make($request->input(), [
         //    'name' => 'required|max:255',
         //    'email' => 'required|unique:users,email|max:255|email:rfc',
         //    'password' => 'required|ascii|max:32',
         //]);
+
+        // 本サンプルではバリデーションのエラーメッセージが英語のままになっていますが、
+        // カスタマイズ方法は上記URLの
+        // 名前付きエラーバッグの次のエラーメッセージのカスタマイズ
+        // に記述がありますが、Validator::makeの第3引数に渡せば可能です
 
         // validationエラーチェック
         if ($validator->fails()) {

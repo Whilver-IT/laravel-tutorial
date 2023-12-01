@@ -34,19 +34,18 @@ class AuthController extends Controller
             ]);
 
             // またはこう記述
-            //$validator = Validator::validate($request->all(), [
+            //$validator = Validator::validate($request->input(), [
             //    'email' => 'required|email:rfc',
             //    'password' => 'required|ascii',
             //]);
             
-
             // 認証
             // attemptでバリデーションエラーが起こると、その時点でエラーとなり
             // 以下のelse節を通らないため、else節中のエラーメッセージは返されないので
             // この辺りの処理をどうするのかは各プロジェクトで決めることになるかと
             if (Auth::attempt($validator)) {
                 // 認証成功したので、セッションの再生成をする
-                $request->session()->regerate();
+                $request->session()->regenerate();
             } else {
                 // 認証失敗なので戻る
                 return back()->withErrors(['message' => 'メールアドレスまたはパスワードが正しくありません'])->onlyInput('email');

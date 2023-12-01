@@ -778,7 +778,7 @@ $ php artisan make:controller RegisterController
     └── web.php
 ```
 
-ソースを見るときは先ずroutes/web.phpを見ると良いかと思います  
+ソースを見るときは先ず{Laravelインストールディレクトリ}/routes/web.phpを見ると良いかと思います  
 routes/web.php内にも記述していますが、
 ```php
 Route::get('/register', [RegisterController::class, 'showRegister'])->name('showRegister');
@@ -786,7 +786,8 @@ Route::get('/register', [RegisterController::class, 'showRegister'])->name('show
 は、GETで  
 http(s)://xxx.xxx.xx/register  
 にアクセスしたときに、RegisterController({Laravelインストールディレクトリ}/app/Http/Controllers/RegisterController.php)のshowRegisterメソッドを呼ぶという意味になります  
-ルーティングとControllerのメソッドの対応を見れば繋がりが分かるかと思います
+ルーティングとControllerのメソッドの対応を見れば繋がりが分かるかと思います  
+あとは、ソースをご覧ください。細かいコメント等や説明をここに書くのはかえって分かりづらいと判断し、各ソースにコメントを付与していますので
 
 ## 6. 商品関連機能作成
 

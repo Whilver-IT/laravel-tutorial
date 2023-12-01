@@ -41,6 +41,7 @@ class GoodsController extends Controller
      */
     public function input(Request $request, ?string $id)
     {
+        $suffix = '登録';
         if ($request->isMethod('post')) {
             if ($id) {
                 // POSTでidがあるのは不正とみなす
@@ -63,11 +64,17 @@ class GoodsController extends Controller
                 // 商品データがあったら、セッションに格納
                 $request->session()->push('goods.id', $goods->id);
                 $request->session()->push('goods.updated_at', $goods->updated_at);
+                $suffix = '変更';
             }
         }
 
-        $title = 'aaa';
-        $method = $request->method();
-        return view('goods.input', compact('title', 'goods'));
+        $title = '商品' . $suffix;
+        $mode = $suffix == '登録' ? 'new' : 'edit';
+        return view('goods.input', compact('title', 'goods', 'mode'));
+    }
+
+    public function confirm(GoodsRequest $request, ?string $id)
+    {
+        return view('goods.confirm');
     }
 }

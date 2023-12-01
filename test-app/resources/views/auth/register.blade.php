@@ -26,5 +26,9 @@
         @endif
         <button type="submit">送信</button>
     </form>
-    <a href="{{ route('login') }}">ログイン画面</a>へ
+    <a href="{{ route('login') }}">ログイン画面</a>へ<br>
+    <pre>@php
+        print_r(request()->all())
+        @endphp
+    </pre>
 @endsection
