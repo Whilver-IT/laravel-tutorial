@@ -31,6 +31,46 @@ class GoodsService extends BaseService
     }
 
     /**
+     * 編集モード取得
+     *
+     * @return string
+     */
+    public function getEditMode(): string
+    {
+        return session('goods.id') ? 'edit' : 'new';
+    }
+
+    /**
+     * 編集モード取得(文言)
+     *
+     * @return string
+     */
+    public function getEditModeString(): string
+    {
+        return $this->getEditMode() == 'edit' ? '変更' : '登録';
+    }
+
+    /**
+     * タイトル取得
+     *
+     * @return string
+     */
+    public function getEditTitle(): string
+    {
+        return '商品情報' . $this->getEditModeString();
+    }
+
+    /**
+     * 商品一覧取得
+     *
+     * @return Illuminate\Database\Eloquent\Collection|null
+     */
+    public function getGoodsList()
+    {
+        return $this->goodsRepository->getGoodsList(request()->query());
+    }
+
+    /**
      * IDによるデータ取得
      *
      * @param string $id
@@ -39,5 +79,26 @@ class GoodsService extends BaseService
     public function getById(string $id)
     {
         return $this->goodsRepository->getById($id);
+    }
+
+    /**
+     * データ新規作成、更新処理
+     *
+     * @return boolean
+     */
+    public function save(): bool
+    {
+        return $this->goodsRepository->save();
+    }
+
+    /**
+     * データ削除
+     *
+     * @param string $id
+     * @return boolean
+     */
+    public function delete(string $id): bool
+    {
+        return $this->goodsRepository->delete($id);
     }
 }

@@ -3,25 +3,33 @@
 @section('title'){{ $title }}@endsection
 
 @section('contents')
+    <div>
+        <a href="{{ route('goods.search') }}">商品検索へ</a>
+    </div>
     <form method="post" action="{{ route('goods.confirm') }}">
         @csrf
-        {{-- 
-            セッションの値がある場合、valueに値は入れない
-            但し表示は行う(編集不可)
-        --}}
-        ID(必須): <input type="{{ $mode == 'new' ? 'text' : 'hidden' }}" id="id" name="id" value="{{ $mode == 'new' ? old('id') : '' }}">{{ $mode == 'new' ? '' : session('goods.id') }}<br>
+        @if ($errors->has('warning'))
+            @foreach ($errors->get('warning') as $message)
+                {{ $message }}<br>
+            @endforeach
+        @endif
+        ID(必須): @if ($mode == 'new')
+            <input type="text" id="id" name="id" value="{{ old('id') }}"><br>
+        @else
+            {{ session('goods.id') }}<br>
+        @endif
         @if ($errors->has('id'))
             @foreach ($errors->get('id') as $message)
                 {{ $message }}<br>
             @endforeach
         @endif
-        名前(必須): <input type="text" name="name" value="{{ old('name') }}"><br>
+        名前(必須): <input type="text" name="name" value="{{ old('name', request()->input('name')) }}"><br>
         @if ($errors->has('name'))
             @foreach ($errors->get('name') as $message)
                 {{ $message }}<br>
             @endforeach
         @endif
-        説明: <input type="text" name="explanation" value="{{ old('explanation') }}"><br>
+        説明: <input type="text" name="explanation" value="{{ old('explanation', request()->input('explanation')) }}"><br>
         <button type="submit">確認</button>
     </form>
 @endsection

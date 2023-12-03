@@ -5,17 +5,17 @@ namespace App\Rules;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-use App\Repositories\GoodsRepository;
+use App\Services\GoodsService;
 
 class GoodsId implements ValidationRule
 {
     /**
      * コンストラクタ
      *
-     * @param GoodsRepository $goodsRepo
+     * @param GoodsService $goodsService
      */
     public function __construct(
-        protected GoodsRepository $goodsRepo
+        protected GoodsService $goodsService
     ) {}
 
     /**
@@ -26,7 +26,7 @@ class GoodsId implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         // セッションのgoods.idキーに値があれば変更、そうでなければ新規とする
-        $mode = session()->has('goods.id') ? 'edit' : 'new';
+        $mode = $this->goodsService->getEditMode();
 
         // 変更ならセッションから、そうでなければ$valueの値をidとする
         $id = $mode == 'edit' ? session('goods.id') : $value;
@@ -47,12 +47,12 @@ class GoodsId implements ValidationRule
             }
 
             // DBから値を取得
-            $item = $this->goodsRepo->getById($id);
+            $item = $this->goodsService->getById($id);
             if ($mode == 'edit') {
                 if (is_null($item)) {
                     $fail('指定された:attibuteは削除されています');
                 } else {
-                    if (session()->has('goods.updated_at')) {
+                    if (session('goods.updated_at')) {
                         if (session('goods.updated_at') != $item->updated_at) {
                             $fail('データが変更されましたので、やり直してください');
                         }

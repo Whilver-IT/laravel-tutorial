@@ -11,7 +11,7 @@ class AuthController extends Controller
     /**
      * ログイン画面表示
      *
-     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @return Illuminate\Contracts\View\View|Illuminate\Http\RedirectResponse
      */
     public function index()
     {
@@ -33,7 +33,7 @@ class AuthController extends Controller
                 'password' => 'required|ascii',
             ]);
 
-            // またはこう記述
+            // またはこう記述(use Illuminate\Support\Facades\Validator;のコメントを外す)
             //$validator = Validator::validate($request->input(), [
             //    'email' => 'required|email:rfc',
             //    'password' => 'required|ascii',

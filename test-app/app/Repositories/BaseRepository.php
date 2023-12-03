@@ -12,7 +12,7 @@ abstract class BaseRepository
     /**
      * テーブル名
      * 継承先で必ずセットすること
-     * (のであれば、本来ここはinterfaceの方がいいかもしれないが本サンプルでは割愛)
+     * (のであれば、本来ここはinterfaceでメソッドから取得の方がいいかもしれないが本サンプルでは割愛)
      *
      * @var string
      */

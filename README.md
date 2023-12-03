@@ -139,7 +139,12 @@ DocumentRoot /xxx/xxx/{Laravelインストールディレクトリ}/public
 [10.x Laravel](https://readouble.com/laravel/10.x/ja)  
 をご覧ください
 
-### 4-2. 本ドキュメントで説明する内容
+### 4-2. 本サンプルソースのライセンスなど
+
+LICENSEファイルをご覧ください(MITライセンスです)
+このソースを使用して生じたいかなる不具合にも責任を負いません
+
+### 4-3. 本ドキュメントで説明する内容
 
 1. 設定ファイル(.env)への設定
 1. migration(マイグレーション)
@@ -147,7 +152,7 @@ DocumentRoot /xxx/xxx/{Laravelインストールディレクトリ}/public
 1. 開発を進めるにあたって
 1. 簡単なページ作成
 
-### 4-3. 設定ファイル(.env)への設定
+### 4-4. 設定ファイル(.env)への設定
 
 細かいレベルの話は、  
 [設定 10.x Laravel](https://readouble.com/laravel/10.x/ja/configuration.html)  
@@ -170,7 +175,7 @@ env('XXXXXX')
 
 となっている「XXXXX」の値をセットすると思っていただいて最初は構いません
 
-### 4-4. migration(マイグレーション)
+### 4-5. migration(マイグレーション)
 
 migration  
 とは、直訳すると<strong>移行</strong>という意味ですが、データベースとの連携ということになるでしょうか  
@@ -178,7 +183,7 @@ migration
 
 正直、CREATE TABLEを自分で記述してデータベースに流してとかする方が早いし、本作業は手間に感じるかもしれませんが、Laravelのお作法ということで
 
-#### 4-4-1. .envの設定
+#### 4-5-1. .envの設定
 
 先ずは、データベースの設定を.envの設定を行いましょう  
 `{Laravelインストールディレクトリ}/.env`を見ると、`{Laravelインストールディレクトリ}/.env.sample`とほぼ同じ内容であることが分かるかと思います  
@@ -228,7 +233,7 @@ env()の第2引数は、第1引数の設定値がない場合のデフォルト�
 余談ですが、`{Laravelインストールディレクトリ}/config/database.php`のそれ以外の値を変更したい場合は、直接database.phpの値を変えてしまうか、.envで設定できるようにするかその辺りはプロジェクトの方針で決めることになると思います  
 (基本それ以外の値は変えることは少なかろうということで、.envの設定値とはなっていないとは思います)
 
-#### 4-4-2. migrateの実行
+#### 4-5-2. migrateの実行
 
 マイグレーションの細かい部分は、本家マニュアル  
 [マイグレーション 10.x Laravel](https://readouble.com/laravel/10.x/ja/migrations.html)  
@@ -307,7 +312,7 @@ srules | hastriggers | rowsecurity
 また、migrationsテーブルに、migrationの内容が登録されていることを確認  
 (本ドキュメントでは、migrationsテーブルの細かい中身の解説は割愛)
 
-#### 4-4-3. migrateを行うファイルの作成など
+#### 4-5-3. migrateを行うファイルの作成など
 
 本ドキュメントの冒頭で述べたが、作成する機能用のデータベースのテーブルを作成する  
 以下のようなテーブル構成にする  
@@ -469,9 +474,9 @@ ALTER TABLE ONLY public.goods
 
 ```
 
-### 4-5. seed(シード)
+### 4-6. seed(シード)
 
-シードとはニード(need)に対するものとしての意味で、Laravelなどでは(テスト)データをデータベースのテーブルに入れる目的のものです  
+元々は種をまくという意味などですが、Laravelなどのフレームワークでは(テスト)データをデータベースのテーブルに入れる目的のものです  
 早速さきほど、goodsテーブルを作成したので、データを入れてみましょう
 
 マニュアルでは、  
@@ -480,7 +485,7 @@ ALTER TABLE ONLY public.goods
 
 正直シード(シーダ(seeder))を使用して、データを登録する必要もないかもしれませんが、大量のテストデータを作る場合などに使用すると便利なこともあります
 
-#### 4-5-1. seed用ファイルの作成
+#### 4-6-1. seed用ファイルの作成
 
 goodsテーブルなので、「Goods」Seederとします(先頭大文字)  
 これが、作成されるファイルのクラス名になります
@@ -546,9 +551,9 @@ class GoodsSeeder extends Seeder
 }
 ```
 
-#### 4-5-2. seedの実行
+#### 4-6-2. seedの実行
 
-4-5-1.で作成したファイルの内容を変更して保存したらseedの実行
+4-6-1.で作成したファイルの内容を変更して保存したらseedの実行
 
 ```console
 $ cd {Laravelインストールディレクトリ}
@@ -575,11 +580,11 @@ $ psql -U {データベースユーザ名} -h {データベースIPアドレス�
 {Laravelインストールディレクトリ}/config/app.php  
 のtimezoneをUTCからAsia/Tokyoにしておいてください
 
-### 4-6. テーブル定義の変更など
+### 4-7. テーブル定義の変更など
 
 再度、migrateの話に戻ってしまうが、実際にアプリケーションの稼働が始まったのちに仕様追加等でテーブル定義を変えないといけなくなった場合について以下に記述する
 
-#### 4-6-1. 定義変更用のファイルの作成
+#### 4-7-1. 定義変更用のファイルの作成
 
 goodsテーブルに説明(explanation)のcolumn(nullもOK.)を追加する  
 追加する場所は、nameとcreated_atの間にしたい  
@@ -592,7 +597,7 @@ $ php artisan make:migration goods_add_column_explanation --table=goods
    INFO  Migration [database/migrations/2023_11_07_223749_goods_add_column_explanation.php] created successfully.   
 ```
 
-#### 4-6-2. ファイル変更
+#### 4-7-2. ファイル変更
 
 #### **`{Laravelインストールディレクトリ}/database/migrations/2023_11_07_223749_goods_add_column_explanation.php`**
 ```php
@@ -696,9 +701,6 @@ goods
 ```
 
 これは、
-http(s)://xxxxx.xx/goods/detail/{商品ID}  
-→ 商品の詳細ページ
-
 http(s)://xxxxx.xx/goods/search  
 → 商品の一覧(検索)ページ
 
@@ -716,7 +718,6 @@ http(s)://xxxxx.xx/goods/finish
 
 ```console
 {DocumentRootのディレクトリ}/goods
-├── detail.php
 ├── input
 │   ├── index.php
 │   ├── confirm.php
@@ -792,5 +793,65 @@ http(s)://xxx.xxx.xx/register
 ## 6. 商品関連機能作成
 
 ここからいよいよ商品関連機能を作成していきます  
-しかしながら、前節の認証機能のソースを見ていただければおそらく基本的なアプリケーションの作成のイメージは掴めると思います
+しかしながら、前節の認証機能のソースを見ていただければおそらく基本的なアプリケーションの作成のイメージは掴めると思います  
+全体のソースは以下になります(商品関連部分)
+
+```console
+{Laravelインストールディレクトリ}/
+├── app
+│   └── Http
+│       └── Controllers
+│           └── Goods
+│               └── GoodsController.php
+├── resources
+│   └── views
+│       ├── goods
+│       │   ├── confirm.blade.php
+│       │   ├── finish.blade.php
+│       │   ├── input.blade.php
+│       │   ├── search_item.blade.php
+│       │   └── search.blade.php
+│       └── layouts
+│           └── main.blade.php(認証で使用した場合と変更なし)
+└── routes
+    └── web.php
+```
+
+## 6-1. はじめに
+
+本サンプルでは、設計としてよくない箇所があります  
+しかしそれはバリデーションにFormRequestを使用するや、独自ルールを作成するなど実践でありそうなシチュエーションを加味して敢えて設計はそのような設計にしてあります  
+この程度のものを作成するのに普通に作成してしまうと見どころもないですし、実践で使えそうなものとしては少ないかなと感じましたので  
+また、本来はモデルを使用した方がスマートに作成できると思いますがクエリビルダの使用例を盛り込むために、敢えてRepositoryパターンとしています  
+この辺りは、実際のプロジェクトで開発にあたるうちにどのようにするのがベターか段々と分かってくることでしょう  
+それでは、以降より細かい部分でソース中に書ききれなかったことを記述しますが、よいLaravelライフを!!
+
+## 6-2. Bladeテンプレートについて
+
+正直bladeテンプレートについては、ソース中にすべてを記述するのは難しいと思ったので、ここでまとめて記述します  
+詳細は、
+[Bladeテンプレート 10.x Laravel](https://readouble.com/laravel/10.x/ja/blade.html)  
+
+### 6-2-1. htmlspecialchars
+
+PHPでhtmlspecialcharsを使用するのと同等にするのは、Laravelでは{{ \$変数名 }}とします  
+また、htmlspecialcharsを使用しない場合は、{!! \$変数名 !!}とします  
+textareaなどの値を、htmlspecialcharsを適用して、改行コードを<br>に変換したいような場合は、  
+{!! nl2br(e($変数名)) !!}
+とできます  
+eヘルパがhtmlspecialcharsを実行します  
+{Laravelインストールディレクトリ}/vendor/laravel/framework/src/Illuminate/Support/helpers.php  
+を見てみてください
+
+### 6-2-2. extends
+
+extendsディレクティブを利用して、テンプレートの継承が行えます  
+親となるテンプレートの中で、@yield('{keyword}')となっている部分を継承側で
+@section('{keyword}')〜@endsection  
+の中身に置き換えることになります  
+
+### 6-2-3. include
+
+includeディレクティブを利用して、別のBladeテンプレートをそこに差し込むことができます  
+この機能によって、部品化をしやすくなるかもしれません
 

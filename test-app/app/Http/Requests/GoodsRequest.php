@@ -25,11 +25,18 @@ class GoodsRequest extends FormRequest
      */
     public function rules(): array
     {
-        // idの判定を難しくしているので、独自に
-        // {Laravelインストールディレクトリ}/app/Rules/GoodsId.php
-        // で定義
         return [
-            'id' => new GoodsId,
+            // idの判定を難しくしているので、独自に
+            // {Laravelインストールディレクトリ}/app/Rules/GoodsId.php
+            // で定義
+            // のコンストラクタでコンストラクタの引数に
+            // App\Services\GoodsService
+            // があり、もちろんこのクラス中に引数として、
+            // $goodsService = new GoodsService();
+            // new GoodsId($goodsService)
+            // のように渡してもよいですが、そのようなバケツリレーをしなくてもlaravelの
+            // resolveヘルパがよしなにやってくれます
+            'id' => resolve(GoodsId::class),
             'name' => 'required',
             'explanation' => 'nullable',
         ];
@@ -37,6 +44,10 @@ class GoodsRequest extends FormRequest
 
     /**
      * バリデーションエラーのメッセージ
+     * 
+     * idのメッセージは、
+     * {Laravelインストールディレクトリ}/app/Rules/GoodsId.php
+     * 側で設定
      *
      * @return array
      */
