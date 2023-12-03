@@ -799,11 +799,6 @@ http(s)://xxx.xxx.xx/register
 ```console
 {Laravelインストールディレクトリ}/
 ├── app
-│   └── Http
-│       └── Controllers
-│           └── Goods
-│               └── GoodsController.php
-├── app
 │   ├── Http
 │   │   └── Controllers
 │   │        └── Goods
