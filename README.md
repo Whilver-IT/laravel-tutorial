@@ -693,7 +693,6 @@ $ php artisan migrate
 今回は以下のようなURLで出力する例を作成します
 ```console
 goods
-├── detail
 ├── input
 │   ├── confirm
 │   └── finish
