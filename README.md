@@ -762,9 +762,10 @@ $ php artisan make:controller RegisterController
 ├── app
 │   └── Http
 │       └── Controllers
-│           ├── AuthController.php
-│           ├── MenuController.php
-│           └── RegisterController.php
+│            ├── AuthController.php
+│            ├── Controller.php
+│            ├── MenuController.php
+│            └── RegisterController.php
 ├── resources
 │   └── views
 │       ├── auth
@@ -802,6 +803,19 @@ http(s)://xxx.xxx.xx/register
 │       └── Controllers
 │           └── Goods
 │               └── GoodsController.php
+├── app
+│   ├── Http
+│   │   └── Controllers
+│   │        └── Goods
+│   │           └── GoodsController.php
+│   ├── Repositories
+│   │   ├── BaseRepository.php
+│   │   └── GoodsRepository.php
+│   ├── Rules
+│   │   └── GoodsId.php
+│   └── Services
+│        ├── BaseService.php
+│        └── GoodsService.php
 ├── resources
 │   └── views
 │       ├── goods
