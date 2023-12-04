@@ -314,7 +314,7 @@ srules | hastriggers | rowsecurity
 
 #### 4-5-3. migrateを行うファイルの作成など
 
-本ドキュメントの冒頭で述べたが、作成する機能用のデータベースのテーブルを作成する  
+本ドキュメントの冒頭で述べましたが、作成する機能用のデータベースのテーブルを作成  
 以下のようなテーブル構成にする  
 
 ```sql
@@ -327,7 +327,7 @@ CREATE TABLE goods (
 )
 ```
 
-Laravelには前節で述べたファイルを作成する機能があるので以下のコマンドを実行する  
+Laravelには前節で述べたファイルを作成する機能があるので以下のコマンドを実行  
 今回は「goods」テーブルなので、create_「goods」_tableとする
 
 ```console
@@ -844,7 +844,7 @@ http(s)://xxx.xxx.xx/register
 
 PHPでhtmlspecialcharsを使用するのと同等にするのは、Laravelでは{{ \$変数名 }}とします  
 また、htmlspecialcharsを使用しない場合は、{!! \$変数名 !!}とします  
-textareaなどの値を、htmlspecialcharsを適用して、改行コードを<br>に変換したいような場合は、  
+textareaなどの値を、htmlspecialcharsを適用して、改行コードを&lt;br&gt;に変換したいような場合は、  
 {!! nl2br(e($変数名)) !!}
 とできます  
 eヘルパがhtmlspecialcharsを実行します  
