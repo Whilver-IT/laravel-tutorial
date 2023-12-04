@@ -89,7 +89,7 @@ Route::get('/menu', [MenuController::class, 'index'])->name('menu')->middleware(
 // こうしておくと、Route::xxx()の第2引数は、コントローラのメソッド名を指定するだけになる
 Route::prefix('goods')->name('goods.')->controller(GoodsController::class)->group(function () {
     
-    Route::match(['get', 'post'], '/search', 'search')->name('search');
+    Route::get('/search', 'search')->name('search');
 
     // 入力(変更)画面、確認画面、完了画面をまとめる
     Route::prefix('input')->group(function () {
