@@ -845,7 +845,7 @@ http(s)://xxx.xxx.xx/register
 PHPでhtmlspecialcharsを使用するのと同等にするのは、Laravelでは{{ \$変数名 }}とします  
 また、htmlspecialcharsを使用しない場合は、{!! \$変数名 !!}とします  
 textareaなどの値を、htmlspecialcharsを適用して、改行コードを&lt;br&gt;に変換したいような場合は、  
-{!! nl2br(e($変数名)) !!}
+{!! nl2br(e($変数名)) !!}  
 とできます  
 eヘルパがhtmlspecialcharsを実行します  
 {Laravelインストールディレクトリ}/vendor/laravel/framework/src/Illuminate/Support/helpers.php  
