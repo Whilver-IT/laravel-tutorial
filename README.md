@@ -108,8 +108,8 @@ $ composer create-project --prefer-dist laravel/laravel {app名}
 conf設定の例
 
 ```console
-DocumentRoot /xxx/xxx/{Laravelインストールディレクトリ}/public
-<Directory /xxx/xxx/{Laravelインストールディレクトリ}/public>
+DocumentRoot {Laravelインストールディレクトリ}/public
+<Directory {Laravelインストールディレクトリ}/public>
     Options +FollowSymLinks -Indexes
     AllowOverride All
     Require all granted
