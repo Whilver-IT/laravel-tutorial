@@ -80,7 +80,7 @@ $ exit
 
 ```console
 # dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
-# dnf install php82-php php82-php-pdo php82-php-pgsql php82-php-mbstring php82-zip unzip
+# dnf install php82-php php82-php-pdo php82-php-pgsql php82-php-mbstring php82-php-zip unzip
 # alternatives --install /usr/bin/php php /usr/bin/php82 1
 ```
 
