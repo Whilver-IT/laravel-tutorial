@@ -92,7 +92,7 @@ alternativesでphpコマンドでphp82を実行できるようにしておきま
 ```console
 # php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 # php composer-setup.php
-# mv composer.phar /usr/local/bin
+# mv composer.phar /usr/local/bin/composer
 ```
 
 ### 2-7. Laravelのインストール
